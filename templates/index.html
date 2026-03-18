@@ -1,11 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DASHBOARD</title>
+    <title>FRO Reminder System</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f6f8;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        p {
+            color: #555;
+        }
+
+        .search-box {
+            margin: 30px 0;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .tab {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .tab:hover {
+            background-color: #2980b9;
+        }
+    </style>
 </head>
 <body>
-    
+
+<div class="container">
+    <h1>Welcome to CGC FRO Reminder System</h1>
+    <p>An application to send reminders for FRO (Visa expiration) deadlines and updates.</p>
+
+
+    <!-- Search  window-->
+    <div class="search-box">
+        <input type="text" placeholder="Search or View student...">
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+       <!-- <div class="tab">Add Student FRO Details</div> -->
+        <div class="tab" onclick="window.location.href='/add'">
+        Add Student FRO Details
+        </div>
+        <div class="tab">Edit or Update Student Details</div>
+        <div class="tab">Delete Student Details</div>
+        <div class="tab">View Student Details</div>
+    </div>
+
+</div>
+
 </body>
 </html>

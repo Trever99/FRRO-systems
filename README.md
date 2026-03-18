@@ -149,8 +149,14 @@ cd fro-reminder-system
 
 ```bash
 python -m venv venv
-source venv/bin/activate   # Linux/Mac
-venv\Scripts\activate      # Windows
+# Linux/Mac
+source venv/bin/activate
+
+# Windows Command Prompt
+venv\Scripts\activate.bat
+
+# Windows PowerShell
+.\venv\Scripts\Activate.ps1
 ```
 
 ### 3️⃣ Install Dependencies

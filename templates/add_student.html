@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f8;
+        }
+
+        .form-container {
+            width: 500px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Add Student Details</h2>
+
+    <form action="/submit" method="POST" enctype="multipart/form-data">
+
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email">
+        <input type="text" name="phone" placeholder="Phone Number">
+
+        <label>FRO Issue Date</label>
+        <input type="date" name="fro_issue">
+
+        <label>FRO Expiry Date</label>
+        <input type="date" name="fro_expiry">
+
+        <label>Passport Issue Date</label>
+        <input type="date" name="passport_issue">
+
+        <label>Passport Expiry Date</label>
+        <input type="date" name="passport_expiry">
+
+        <label>Visa Issue Date</label>
+        <input type="date" name="visa_issue">
+
+        <label>Visa Expiry Date</label>
+        <input type="date" name="visa_expiry">
+
+        <input type="text" name="roll" placeholder="Roll Number">
+        <input type="text" name="course" placeholder="Course">
+        <input type="text" name="country" placeholder="Country">
+
+        <label>Upload Document</label>
+        <input type="file" name="document">
+
+        <button type="submit">Submit</button><br>
+        <br><button type="button" onclick="window.location.href='/index'">back</button><br>
+
+    </form>
+</div>
+
+</body>
+</html>
