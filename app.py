@@ -34,7 +34,7 @@ def search():
 
     #  real DB search logic not ready.
     # For now this echoes the search query.
-    message = f"Search requested for: '{query}'. (Search data not yet implemented.)"
+    message = f"Search requested for: '{query}'. (Search data not yet implemented!!! .)"
     return render_template("index.html", search_query=query, message=message)
 
 # Handle Form Submission
