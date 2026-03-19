@@ -32,6 +32,30 @@
             border: 1px solid #ccc;
         }
 
+        button {
+            padding: 10px 16px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .search-result {
+            margin: 10px auto;
+            padding: 10px;
+            width: 340px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+        }
+
         .tabs {
             display: flex;
             justify-content: center;
@@ -59,10 +83,27 @@
     <p>An application to send reminders for FRO (Visa expiration) deadlines and updates.</p>
 
 
-    <!-- Search  window-->
+    <!-- Search window -->
     <div class="search-box">
-        <input type="text" placeholder="Search or View student...">
+        <form action="/search" method="get" id="searchForm">
+            <input id="searchInput" type="text" name="q" placeholder="Search or view student..." value="{{ search_query | default('') }}" required>
+            <button type="submit">Search</button>
+            <button type="button" onclick="clearSearch()">Clear</button>
+        </form>
     </div>
+
+    <script>
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            window.location.href = '/';
+        }
+    </script>
+
+    {% if message %}
+    <div class="search-result">
+        <p>{{ message }}</p>
+    </div>
+    {% endif %}
 
     <!-- Tabs -->
     <div class="tabs">

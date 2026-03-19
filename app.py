@@ -25,7 +25,19 @@ def add_student():
 def index():
     return render_template("index.html")
 
-# Handle Form S`ubmission
+# Search endpoint
+@app.route("/search")
+def search():
+    query = request.args.get('q', '').strip()
+    if not query:
+        return redirect(url_for('home'))
+
+    #  real DB search logic not ready.
+    # For now this echoes the search query.
+    message = f"Search requested for: '{query}'. (Search data not yet implemented.)"
+    return render_template("index.html", search_query=query, message=message)
+
+# Handle Form Submission
 @app.route("/submit", methods=["POST"])
 def submit_student():
     data = request.form
@@ -34,12 +46,13 @@ def submit_student():
     filename = file.filename
     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-    # For now, just print data (we'll connect DB later)
+    # For now, it will just print the data (we will connect DB later)
     print("Student Data:", data)
     print("File uploaded:", filename)
 
-    return "Student added successfully!"
+    return "Student added successfully! Please return to the dashboard."
 
 #Base models
+
 if __name__ == "__main__":
     app.run(debug=True)
