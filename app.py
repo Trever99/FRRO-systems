@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-import os
+import os, sqlite3
 
 app = Flask(__name__)
 
@@ -20,6 +20,11 @@ def home():
 def add_student():
     return render_template("add_student.html")
 
+#Return to Dashboard
+@app.route("/index")
+def index():
+    return render_template("index.html")
+
 # Handle Form S`ubmission
 @app.route("/submit", methods=["POST"])
 def submit_student():
@@ -35,5 +40,6 @@ def submit_student():
 
     return "Student added successfully!"
 
+#Base models
 if __name__ == "__main__":
     app.run(debug=True)
