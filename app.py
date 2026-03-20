@@ -1,7 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os, sqlite3
+#DB imports
+from config import Config
+from models import db
 
 app = Flask(__name__)
+# Database configuration
+app.config.from_object(Config)
+
+db.init_app(app)
+
+# Create tables (only for the first time use)
+with app.app_context():
+    db.create_all()
 
 # Folder to store uploaded documents
 UPLOAD_FOLDER = 'uploads'
@@ -14,6 +25,7 @@ if not os.path.exists(UPLOAD_FOLDER):
 @app.route("/")
 def home():
     return render_template("index.html")
+    print("Db created successfully!")
 
 # Show Add Student Form
 @app.route("/add")
