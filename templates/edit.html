@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Student</title>
+</head>
+<body>
+
+<h2>Edit Student</h2>
+
+{% if not student %}
+<form method="GET" action="/edit">
+    Enter Roll Number: <input type="text" name="roll_no" required>
+    <button type="submit">Search</button>
+</form>
+{% else %}
+
+<form method="POST">
+
+    Roll No:
+    <input type="text" value="{{ student.roll_no }}" readonly><br><br>
+
+    Name:
+    <input type="text" name="name" value="{{ student.name }}"><br><br>
+
+    Phone:
+    <input type="text" name="phone" value="{{ student.phone_nr }}"><br><br>
+
+    Email:
+    <input type="email" name="email" value="{{ student.email }}"><br><br>
+
+    Course:
+    <input type="text" name="course" value="{{ student.course_name }}"><br><br>
+    Country:
+    <input type="text" name="country" value="{{ student.country_name }}"><br><br>
+
+     FRO Issue Date:
+    <input type="date" name="fro_issue_date" value="{{ student.fro_issue_date }}"><br><br>
+        FRO Expiry Date:
+    <input type="date" name="fro_expiry_date" value="{{ student.fro_expiry_date }}"><br><br>
+    document upload:
+    <input type="file" name="document"><br><br> 
+
+
+    <button type="submit">Update</button>
+
+</form>
+{% endif %}
+
+<br>
+<button onclick="location.href='/index'">Back</button>
+
+</body>
+</html>
