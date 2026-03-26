@@ -82,7 +82,14 @@ def delete_student(roll_no):
 # Download route
 @app.route("/download/<filename>")
 def download_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+    downloads_folder = os.path.abspath(app.config['UPLOAD_FOLDER'])
+    file_path = os.path.join(downloads_folder, filename)
+
+    if not os.path.isfile(file_path):
+        flash(f"File not found: {filename}", "error")
+        return redirect(url_for('view_students'))
+
+    return send_from_directory(downloads_folder, filename, as_attachment=True)
 
 # return to Edit students page
 @app.route("/edit", methods=["GET"])
