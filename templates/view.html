@@ -40,7 +40,9 @@
 
 <td>
 <a href="/edit/{{ s.roll_no }}" class="btn btn-success btn-sm">Edit</a>
-<a href="/delete/{{ s.roll_no }}" class="btn btn-danger btn-sm">Delete</a>
+<form method="POST" action="/delete/{{ s.roll_no }}" style="display:inline; margin:0; padding:0;" onsubmit="return confirm('Are you sure you want to delete this student?')">
+<button type="submit" class="btn btn-danger btn-sm">Delete</button>
+</form>
 </td>
 
 </tr>

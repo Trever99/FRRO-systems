@@ -3,6 +3,7 @@ import os, sqlite3
 #DB imports
 from config import Config
 from models import db, Student, Document, Course, Country
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "secret-key- on-production"  # ← added
@@ -196,9 +197,24 @@ def submit_student():
         passport_expiry = request.form.get('passport_expiry')
         visa_issue = request.form.get('visa_issue')
         visa_expiry = request.form.get('visa_expiry')
-        
+
+        def parse_date_safe(value):
+            if not value:
+                return None
+            try:
+                return datetime.strptime(value, "%Y-%m-%d").date()
+            except ValueError:
+                return None
+
+        visa_issue_date = parse_date_safe(visa_issue)
+        visa_expiry_date = parse_date_safe(visa_expiry)
+
         errors = []
-        
+
+       
+ #################################Yeah
+
+
         if len(name) < 3:
             errors.append("Enter valid name")
         if len(phone_nr) != 10:
@@ -207,6 +223,24 @@ def submit_student():
             errors.append("Enter valid email")
         if len(roll_no) < 7:
             errors.append("Enter valid roll number (at least 7 characters)")
+        
+        # Validate visa date input and ordering
+        if visa_issue and not visa_expiry:
+            errors.append("Visa expiry date is required when visa issue date is provided")
+        elif visa_expiry and not visa_issue:
+            errors.append("Visa issue date is required when visa expiry date is provided")
+        elif visa_issue and visa_expiry:
+            if visa_issue_date is None or visa_expiry_date is None:
+                errors.append("Visa dates must be valid dates")
+            elif visa_issue_date > visa_expiry_date:
+                errors.append("Visa issue date cannot be more than visa expiry date")
+
+
+        # if (fro_expiry < fro_issue):
+        #     errors.append("FRO expiry date must be after issue date")
+        # if (passport_expiry < passport_issue):
+        #     errors.append("Passport expiry date must be after issue date")
+        
         
         # Check for duplicates
         existing = Student.query.filter(
